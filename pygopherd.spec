@@ -2,12 +2,13 @@ Summary:	Gopher server
 Summary(pl):	Serwer gophera
 Name:		pygopherd
 Version:	2.0.9
-Release:	0.3
+Release:	0.4
 License:	GPL
 Group:		Networking/Daemons
 Vendor:		John Goerzen <jgoerzen@complete.org>
 Source0:	http://gopher.quux.org:70/give-me-gopher/%{name}/%{name}_%{version}.tar.gz
 # Source0-md5:	98f552fc13edefdd5fd3e70db07eed0b
+Patch0:		%{name}-conf.patch
 URL:		gopher://gopher.quux.org/1/Software/Gopher
 %pyrequires_eq  python-modules
 Requires(pre):	/usr/bin/getgid
@@ -20,6 +21,8 @@ Obsoletes:	gofish
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_rootdir	/home/services/gopher
+
 %description
 gopherd - a gopher server.
 
@@ -28,13 +31,14 @@ gopherd - serwer gophera.
 
 %prep
 %setup -q -n %{name}
+%patch0 -p0
 
 %build
 python setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{py_sitescriptdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{py_sitescriptdir},%{_rootdir}}
 
 python setup.py install \
 	--root=$RPM_BUILD_ROOT \
@@ -78,3 +82,4 @@ fi
 %{py_sitescriptdir}/%{name}/handlers/*.py[oc]
 %dir %{py_sitescriptdir}/%{name}/protocols
 %{py_sitescriptdir}/%{name}/protocols/*.py[oc]
+%dir %{_rootdir}
