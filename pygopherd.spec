@@ -11,7 +11,7 @@ Source0:	http://gopher.quux.org:70/give-me-gopher/%{name}/%{name}_%{version}.tar
 Source1:	pygopherd.init
 Patch0:		%{name}-conf.patch
 URL:		gopher://gopher.quux.org/1/Software/Gopher
-%pyrequires_eq  python-modules
+%pyrequires_eq	python-modules
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/bin/id
 Requires(pre):	/usr/sbin/groupadd
@@ -55,22 +55,22 @@ rm -rf $RPM_BUILD_ROOT
 
 %pre
 if [ -n "`getgid gopher`" ]; then
-       if [ "`getgid gopher`" != "30" ]; then
-               echo "Error: group gopher doesn't have gid=30 . Correct this before installing gofish." 1>&2
-               exit 1
-       fi
+	if [ "`getgid gopher`" != "30" ]; then
+		echo "Error: group gopher doesn't have gid=30 . Correct this before installing gofish." 1>&2
+	exit 1
+	fi
 else
-       echo "Adding group gopher GID=30."
-       /usr/sbin/groupadd -g 30 gopher || exit $?
+	echo "Adding group gopher GID=30."
+	/usr/sbin/groupadd -g 30 gopher || exit $?
 fi
 if [ -n "`id -u gopher 2>/dev/null`" ]; then
-       if [ "`id -u gopher`" != "13" ]; then
-               echo "Error: user gopher doesn't have uid=13. Correct this before installing gofish." 1>&2
-               exit 1
-       fi
+	if [ "`id -u gopher`" != "13" ]; then
+		echo "Error: user gopher doesn't have uid=13. Correct this before installing gofish." 1>&2
+		exit 1
+	fi
 else
-       echo "Adding user gopher UID=13."
-       /usr/sbin/useradd -u 13 -g 30 -d /no/home -s /bin/false -c "gopherd user" gopher || exit $?
+	echo "Adding user gopher UID=13."
+	/usr/sbin/useradd -u 13 -g 30 -d /no/home -s /bin/false -c "gopherd user" gopher || exit $?
 fi
 
 %files
