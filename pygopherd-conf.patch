@@ -1,0 +1,11 @@
+--- conf/pygopherd.conf-orig	2004-08-29 18:25:23.258672584 +0200
++++ conf/pygopherd.conf	2004-08-29 18:25:40.972979600 +0200
+@@ -113,7 +113,7 @@
+ 
+ # Where the documents are stored.
+ 
+-root = /var/gopher
++root = /home/services/gopher
+ 
+ # Location of a file to use to figure out MIME types.  You can
+ # specify multiple files here -- just separate them with a colon.
