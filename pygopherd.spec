@@ -2,12 +2,13 @@ Summary:	Gopher server
 Summary(pl):	Serwer gophera
 Name:		pygopherd
 Version:	2.0.9
-Release:	0.4
+Release:	0.5
 License:	GPL
 Group:		Networking/Daemons
 Vendor:		John Goerzen <jgoerzen@complete.org>
 Source0:	http://gopher.quux.org:70/give-me-gopher/%{name}/%{name}_%{version}.tar.gz
 # Source0-md5:	98f552fc13edefdd5fd3e70db07eed0b
+Source1:	pygopherd.init
 Patch0:		%{name}-conf.patch
 URL:		gopher://gopher.quux.org/1/Software/Gopher
 %pyrequires_eq  python-modules
@@ -38,12 +39,14 @@ python setup.py build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/%{name},%{py_sitescriptdir},%{_rootdir}}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/{%{name},rc.d/init.d},%{py_sitescriptdir},%{_rootdir}}
 
 python setup.py install \
 	--root=$RPM_BUILD_ROOT \
 	--install-lib=%{py_sitescriptdir} \
 	--optimize=2
+
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/rc.d/init.d/pygopherd
 
 find $RPM_BUILD_ROOT -type f -name "*.py" -exec rm -rf {} \;
 
@@ -76,6 +79,7 @@ fi
 %dir %{_sysconfdir}/%{name}
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/mime.types
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/%{name}.conf
+%attr(754,root,root) %{_sysconfdir}/rc.d/init.d/pygopherd
 %dir %{py_sitescriptdir}/%{name}
 %{py_sitescriptdir}/%{name}/*.py[oc]
 %dir %{py_sitescriptdir}/%{name}/handlers
