@@ -2,7 +2,7 @@ Summary:	Gopher server
 Summary(pl):	Serwer gophera
 Name:		pygopherd
 Version:	2.0.9
-Release:	0.5
+Release:	1
 License:	GPL
 Group:		Networking/Daemons
 Vendor:		John Goerzen <jgoerzen@complete.org>
