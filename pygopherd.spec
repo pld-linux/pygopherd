@@ -47,8 +47,8 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/mime.types
 %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/%{name}/%{name}.conf
 %dir %{py_sitescriptdir}/%{name}
-%dir %{py_sitescriptdir}/%{name}/protocols
+%{py_sitescriptdir}/%{name}/*.py[oc]
 %dir %{py_sitescriptdir}/%{name}/handlers
-%dir %{py_sitescriptdir}/%{name}/*.py[oc]
-%dir %{py_sitescriptdir}/%{name}/handlers/*.py[oc]
-%dir %{py_sitescriptdir}/%{name}/protocols/*.py[oc]
+%{py_sitescriptdir}/%{name}/handlers/*.py[oc]
+%dir %{py_sitescriptdir}/%{name}/protocols
+%{py_sitescriptdir}/%{name}/protocols/*.py[oc]
