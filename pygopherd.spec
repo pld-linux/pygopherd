@@ -1,8 +1,8 @@
-Summary:	gopher server
-Summary(pl):	serwer gophera
+Summary:	Gopher server
+Summary(pl):	Serwer gophera
 Name:		pygopherd
 Version:	2.0.9
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Networking/Daemons
 Vendor:		John Goerzen <jgoerzen@complete.org>
@@ -14,6 +14,7 @@ BuildRequires:	automake
 BuildRequires:	ncurses-devel
 Provides:	gopher-server
 Obsoletes:	gopher-server
+Obsoletes:	gofish
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
