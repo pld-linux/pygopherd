@@ -61,7 +61,7 @@ if [ -n "`getgid gopher`" ]; then
        fi
 else
        echo "Adding group gopher GID=30."
-       /usr/sbin/groupadd -g 30 gopher || exit 1
+       /usr/sbin/groupadd -g 30 gopher
 fi
 if [ -n "`id -u gopher 2>/dev/null`" ]; then
        if [ "`id -u gopher`" != "13" ]; then
@@ -70,7 +70,7 @@ if [ -n "`id -u gopher 2>/dev/null`" ]; then
        fi
 else
        echo "Adding user gopher UID=13."
-       /usr/sbin/useradd -u 13 -g 30 -d /no/home -s /bin/false -c "gopherd user" gopher || exit 1
+       /usr/sbin/useradd -u 13 -g 30 -d /no/home -s /bin/false -c "gopherd user" gopher
 fi
 
 %files
