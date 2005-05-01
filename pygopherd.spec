@@ -1,3 +1,4 @@
+# TODO: removing created user/group?
 Summary:	Gopher server
 Summary(pl):	Serwer gophera
 Name:		pygopherd
@@ -11,6 +12,7 @@ Source0:	http://gopher.quux.org:70/give-me-gopher/%{name}/%{name}_%{version}.tar
 Source1:	pygopherd.init
 Patch0:		%{name}-conf.patch
 URL:		gopher://gopher.quux.org/1/Software/Gopher
+BuildRequires:	rpmbuild(macros) >= 1.202
 %pyrequires_eq	python-modules
 Requires(pre):	/usr/bin/getgid
 Requires(pre):	/bin/id
@@ -19,6 +21,8 @@ Requires(pre):	/usr/sbin/useradd
 Provides:	gopher-server
 Obsoletes:	gopher-server
 Obsoletes:	gofish
+Provides:	group(gopher)
+Provides:	user(gopher)
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -54,23 +58,13 @@ find $RPM_BUILD_ROOT -type f -name "*.py" -exec rm -rf {} \;
 rm -rf $RPM_BUILD_ROOT
 
 %pre
-if [ -n "`getgid gopher`" ]; then
-	if [ "`getgid gopher`" != "30" ]; then
-		echo "Error: group gopher doesn't have gid=30 . Correct this before installing gofish." 1>&2
-	exit 1
-	fi
-else
-	echo "Adding group gopher GID=30."
-	/usr/sbin/groupadd -g 30 gopher || exit $?
-fi
-if [ -n "`id -u gopher 2>/dev/null`" ]; then
-	if [ "`id -u gopher`" != "13" ]; then
-		echo "Error: user gopher doesn't have uid=13. Correct this before installing gofish." 1>&2
-		exit 1
-	fi
-else
-	echo "Adding user gopher UID=13."
-	/usr/sbin/useradd -u 13 -g 30 -d /no/home -s /bin/false -c "gopherd user" gopher || exit $?
+%groupadd -g 30 gopher
+%useradd -u 13 -g 30 -d /no/home -s /bin/false -c "gopherd user" gopher
+
+%postun
+if [ "$1" = "0" ]; then
+	%userremove gopher
+	%groupremove gopher
 fi
 
 %files
