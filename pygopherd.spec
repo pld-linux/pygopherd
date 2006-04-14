@@ -1,9 +1,8 @@
-# TODO: removing created user/group?
 Summary:	Gopher server
 Summary(pl):	Serwer gophera
 Name:		pygopherd
 Version:	2.0.9
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Daemons
 Vendor:		John Goerzen <jgoerzen@complete.org>
