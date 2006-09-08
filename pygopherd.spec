@@ -2,10 +2,9 @@ Summary:	Gopher server
 Summary(pl):	Serwer gophera
 Name:		pygopherd
 Version:	2.0.9
-Release:	3
+Release:	4
 License:	GPL
 Group:		Networking/Daemons
-Vendor:		John Goerzen <jgoerzen@complete.org>
 Source0:	http://gopher.quux.org:70/give-me-gopher/pygopherd/%{name}_%{version}.tar.gz
 # Source0-md5:	98f552fc13edefdd5fd3e70db07eed0b
 Source1:	%{name}.init
@@ -18,10 +17,10 @@ Requires(pre):	/usr/bin/getgid
 Requires(pre):	/usr/sbin/groupadd
 Requires(pre):	/usr/sbin/useradd
 Provides:	gopher-server
-Obsoletes:	gopher-server
-Obsoletes:	gofish
 Provides:	group(gopher)
 Provides:	user(gopher)
+Obsoletes:	gofish
+Obsoletes:	gopher-server
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
