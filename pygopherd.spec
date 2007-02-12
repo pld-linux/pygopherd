@@ -1,5 +1,5 @@
 Summary:	Gopher server
-Summary(pl):	Serwer gophera
+Summary(pl.UTF-8):   Serwer gophera
 Name:		pygopherd
 Version:	2.0.9
 Release:	4
@@ -29,7 +29,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 gopherd - a gopher server.
 
-%description -l pl
+%description -l pl.UTF-8
 gopherd - serwer gophera.
 
 %prep
