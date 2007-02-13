@@ -1,5 +1,5 @@
 Summary:	Gopher server
-Summary(pl.UTF-8):   Serwer gophera
+Summary(pl.UTF-8):	Serwer gophera
 Name:		pygopherd
 Version:	2.0.9
 Release:	4
