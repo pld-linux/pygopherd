@@ -34,7 +34,7 @@ gopherd - serwer gophera.
 
 %prep
 %setup -q -n %{name}
-%patch0 -p0
+%patch -P0 -p0
 
 %build
 python setup.py build
